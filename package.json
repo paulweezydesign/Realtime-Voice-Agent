@@ -14,12 +14,14 @@
     "@mastra/core": "0.4.2-alpha.1",
     "@mastra/voice-elevenlabs": "^0.1.0-alpha.2",
     "@types/dom-speech-recognition": "^0.0.4",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "framer-motion": "^12.4.2",
     "lucide-react": "^0.475.0",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
+    "react-syntax-highlighter": "^16.1.0",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
