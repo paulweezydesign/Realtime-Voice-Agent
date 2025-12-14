@@ -12,6 +12,8 @@
     "@ai-sdk/openai-compatible": "^1.0.28",
     "@ai-sdk/xai": "^1.1.11",
     "@mastra/core": "0.4.2-alpha.1",
+    "@mastra/libsql": "^0.16.4",
+    "@mastra/memory": "^0.15.13",
     "@mastra/voice-elevenlabs": "^0.1.0-alpha.2",
     "@types/dom-speech-recognition": "^0.0.4",
     "@types/react-syntax-highlighter": "^15.5.13",

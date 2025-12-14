@@ -9,7 +9,8 @@ import { z } from 'zod';
 
 const ChatRequestSchema = z.object({
   message: z.string().min(1, 'Message is required'),
-  conversationId: z.string().optional(),
+  threadId: z.string().min(1, 'Thread ID is required'),
+  resourceId: z.string().min(1, 'Resource ID is required'),
   context: z.record(z.any()).optional(),
 });
 
@@ -32,8 +33,12 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Stream response from the project manager
+    // Stream response from the project manager with memory
     const stream = await projectManager.stream(validated.message, {
+      memory: {
+        thread: validated.threadId,
+        resource: validated.resourceId,
+      },
       context: validated.context,
     });
     
@@ -124,4 +129,3 @@ export async function OPTIONS(request: NextRequest) {
     },
   });
 }
-

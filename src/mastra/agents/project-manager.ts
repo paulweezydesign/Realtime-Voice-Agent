@@ -4,6 +4,8 @@
  */
 
 import { Agent } from '@mastra/core/agent';
+import { Memory } from '@mastra/memory';
+import { LibSQLStore, LibSQLVector } from '@mastra/libsql';
 import { createModel } from '@/lib/model-provider';
 import { delegateToResearchTool } from '../tools/delegate-to-research';
 import { delegateToDesignTool } from '../tools/delegate-to-design';
@@ -99,5 +101,44 @@ export const projectManagerAgent = new Agent({
     delegateToQATool,
     delegateToClientTeamTool,
   },
-});
+  memory: new Memory({
+    storage: new LibSQLStore({
+      url: process.env.DATABASE_URL || 'file:./agency-conversations.db',
+    }),
+    vector: new LibSQLVector({
+      connectionUrl: process.env.DATABASE_URL || 'file:./agency-conversations.db',
+    }),
+    options: {
+      lastMessages: 20, // Include recent conversation history
+      semanticRecall: {
+        topK: 5, // Retrieve 5 most relevant past messages
+        messageRange: 2, // Include context around matches
+        scope: 'resource', // Search across all threads for the user
+      },
+      threads: {
+        generateTitle: true, // Auto-generate descriptive thread titles
+      },
+      workingMemory: {
+        enabled: true,
+        scope: 'resource', // Persist across all user conversations
+        template: `# Project Context
 
+## Active Projects
+- Current project name:
+- Project status:
+- Key requirements:
+
+## User Preferences
+- Preferred tech stack:
+- Communication style:
+- Priority focus areas:
+
+## Important Decisions
+- Recent architectural decisions:
+- Technology choices:
+- Open questions:
+`,
+      },
+    },
+  }),
+});

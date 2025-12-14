@@ -4,6 +4,7 @@
  */
 
 import { Mastra } from '@mastra/core/mastra';
+import { LibSQLStore } from '@mastra/libsql';
 
 // Import all agents
 import { projectManagerAgent } from './agents/project-manager';
@@ -16,7 +17,7 @@ import { clientAcquisitionAgent } from './agents/client-acquisition';
 import { chatAgent } from './agents/chatAgent'; // Existing voice agent
 
 /**
- * Main Mastra instance with all registered agents
+ * Main Mastra instance with all registered agents and storage
  */
 export const mastra = new Mastra({
   agents: {
@@ -32,6 +33,9 @@ export const mastra = new Mastra({
     // Existing agents
     chatAgent,
   },
+  storage: new LibSQLStore({
+    url: process.env.DATABASE_URL || 'file:./agency-conversations.db',
+  }),
 });
 
 /**
@@ -46,6 +50,13 @@ export const getAgent = (agentName: keyof typeof mastra.agents) => {
  */
 export const getProjectManager = () => {
   return mastra.getAgent('projectManager');
+};
+
+/**
+ * Helper function to get the memory instance for conversation management
+ */
+export const getMemory = () => {
+  return projectManagerAgent.getMemory();
 };
 
 /**
@@ -66,4 +77,3 @@ export {
   clientAcquisitionAgent,
   chatAgent,
 };
-
