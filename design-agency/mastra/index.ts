@@ -5,12 +5,11 @@ import { PinoLogger } from '@mastra/core/logger';
 // Import agents
 import { projectManagerAgent } from './agents/project-manager';
 import { deepResearchAgent } from './agents/deep-research';
-// Import additional agents (will be created in next steps)
-// import { designAgent } from './agents/design';
-// import { frontendAgent } from './agents/frontend';
-// import { backendAgent } from './agents/backend';
-// import { qaAgent } from './agents/qa';
-// import { clientAcquisitionAgent } from './agents/client-acquisition';
+import { designAgent } from './agents/design';
+import { frontendAgent } from './agents/frontend';
+import { backendAgent } from './agents/backend';
+import { qaAgent } from './agents/qa';
+import { clientAcquisitionAgent } from './agents/client-acquisition';
 
 // Import workflows (will be created in next steps)
 // import { projectLifecycleWorkflow } from './workflows/project-lifecycle';
@@ -22,12 +21,11 @@ export const mastra = new Mastra({
   agents: {
     projectManagerAgent,
     deepResearchAgent,
-    // Additional agents will be added as we create them
-    // designAgent,
-    // frontendAgent,
-    // backendAgent,
-    // qaAgent,
-    // clientAcquisitionAgent,
+    designAgent,
+    frontendAgent,
+    backendAgent,
+    qaAgent,
+    clientAcquisitionAgent,
   },
   workflows: {
     // Will be populated as we create workflows
