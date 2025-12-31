@@ -59,12 +59,17 @@ A comprehensive multi-agent design and development agency platform built with Ma
    # Or install MongoDB locally: https://www.mongodb.com/docs/manual/installation/
    ```
 
-7. Run the development server:
+7. Initialize the database (create indexes):
+   ```bash
+   npm run db:init
+   ```
+
+8. Run the development server:
    ```bash
    npm run dev
    ```
 
-8. Open [http://localhost:3000](http://localhost:3000) in your browser
+9. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## 🏗️ Project Structure
 
@@ -141,4 +146,3 @@ All rights reserved.
 ---
 
 Built with ❤️ using Mastra.ai, Next.js, and MongoDB
-
