@@ -11,9 +11,9 @@ import { backendAgent } from './agents/backend';
 import { qaAgent } from './agents/qa';
 import { clientAcquisitionAgent } from './agents/client-acquisition';
 
-// Import workflows (will be created in next steps)
-// import { projectLifecycleWorkflow } from './workflows/project-lifecycle';
-// import { clientOnboardingWorkflow } from './workflows/client-onboarding';
+// Import workflows
+import { projectLifecycleWorkflow } from './workflows/project-lifecycle';
+import { clientOnboardingWorkflow } from './workflows/client-onboarding';
 
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/design-agency';
 
@@ -28,9 +28,8 @@ export const mastra = new Mastra({
     clientAcquisitionAgent,
   },
   workflows: {
-    // Will be populated as we create workflows
-    // projectLifecycleWorkflow,
-    // clientOnboardingWorkflow,
+    projectLifecycleWorkflow,
+    clientOnboardingWorkflow,
   },
   storage: new MongoDBStore({
     connectionString: mongoUri,
