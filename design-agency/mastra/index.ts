@@ -4,8 +4,8 @@ import { PinoLogger } from '@mastra/core/logger';
 
 // Import agents
 import { projectManagerAgent } from './agents/project-manager';
+import { deepResearchAgent } from './agents/deep-research';
 // Import additional agents (will be created in next steps)
-// import { deepResearchAgent } from './agents/deep-research';
 // import { designAgent } from './agents/design';
 // import { frontendAgent } from './agents/frontend';
 // import { backendAgent } from './agents/backend';
@@ -21,8 +21,8 @@ const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/design-ag
 export const mastra = new Mastra({
   agents: {
     projectManagerAgent,
+    deepResearchAgent,
     // Additional agents will be added as we create them
-    // deepResearchAgent,
     // designAgent,
     // frontendAgent,
     // backendAgent,
