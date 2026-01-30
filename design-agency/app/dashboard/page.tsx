@@ -227,12 +227,13 @@ export default function DashboardPage() {
                     <TableHead>Email</TableHead>
                     <TableHead>Company</TableHead>
                     <TableHead>Status</TableHead>
+                    <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {clients.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={4} className="text-center text-gray-500">
+                      <TableCell colSpan={5} className="text-center text-gray-500">
                         No clients yet. Add your first client!
                       </TableCell>
                     </TableRow>
@@ -244,6 +245,15 @@ export default function DashboardPage() {
                         <TableCell>{client.company || '-'}</TableCell>
                         <TableCell>
                           <Badge variant="outline">{client.status}</Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => router.push(`/dashboard/clients/${client._id}`)}
+                          >
+                            View Details
+                          </Button>
                         </TableCell>
                       </TableRow>
                     ))
@@ -286,4 +296,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
